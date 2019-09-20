@@ -39,6 +39,7 @@
 <script>
 // import request from "@/utils/request";
 import { login } from '@/api/user'
+import { mapMutations } from 'vuex'
 export default {
   data () {
     return {
@@ -50,6 +51,7 @@ export default {
     }
   },
   methods: {
+    ...mapMutations(['setUsertoken']),
     async onLogin () {
       // 发送请求
       try {
@@ -60,6 +62,8 @@ export default {
         this.isLoading = true
         const { data } = await login(this.user)
         console.log(data)
+        this.setUsertoken(data.data)
+        // this.$store.commit("setUsertoken", data.data);
         this.$toast.success('登录成功')
         this.isLoading = false
       } catch (err) {

@@ -1,10 +1,25 @@
 import axios from 'axios'
 import JSONbig from 'json-bigint'
+import store from '@/store'
 
 const request = axios.create({
   baseURL: 'http://ttapi.research.itcast.cn'
 })
 
+// 设置请求拦截器
+request.interceptors.request.use(function (config) {
+  const { usertoken } = store.state
+  if (usertoken) {
+    // 配置 token 请求头
+    config.headers.Authorization = `Bearer ${usertoken.token}`
+  }
+  return config
+}, function (error) {
+  // Do something with request error
+  return Promise.reject(error)
+})
+
+// 大数值处理
 request.defaults.transformResponse = [function (data) {
   //   return data ? JSONbig.parse(data) : {}
   try {
