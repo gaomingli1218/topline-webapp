@@ -65,6 +65,7 @@ export default {
         this.setUsertoken(data.data)
         // this.$store.commit("setUsertoken", data.data);
         this.$toast.success('登录成功')
+        this.$router.push('/')
         this.isLoading = false
       } catch (err) {
         if (err.response && err.response.status === 400) {

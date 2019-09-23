@@ -12,7 +12,14 @@ import {
   Field,
   Button,
   Loading,
-  Toast
+  Toast,
+  Tabbar,
+  TabbarItem,
+  Icon,
+  Tab,
+  Tabs,
+  List,
+  Cell
 } from 'vant'
 
 Vue
@@ -22,6 +29,13 @@ Vue
   .use(Button)
   .use(Loading)
   .use(Toast)
+  .use(Tabbar)
+  .use(TabbarItem)
+  .use(Icon)
+  .use(Tab)
+  .use(Tabs)
+  .use(List)
+  .use(Cell)
 
 // 配置使用中文语言
 for (let rule in rules) {
