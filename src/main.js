@@ -6,6 +6,7 @@ import './styles/login.less'
 import { ValidationProvider, ValidationObserver, extend } from 'vee-validate'
 import zhCN from 'vee-validate/dist/locale/zh_CN' // 加载验证插件的语言包
 import * as rules from 'vee-validate/dist/rules'
+import { relativeTime } from '@/utils/date'
 import {
   NavBar,
   CellGroup,
@@ -19,7 +20,13 @@ import {
   Tab,
   Tabs,
   List,
-  Cell
+  Cell,
+  PullRefresh,
+  Grid,
+  GridItem,
+  Image,
+  Lazyload,
+  Popup
 } from 'vant'
 
 Vue
@@ -36,6 +43,12 @@ Vue
   .use(Tabs)
   .use(List)
   .use(Cell)
+  .use(PullRefresh)
+  .use(Grid)
+  .use(GridItem)
+  .use(Image)
+  .use(Lazyload)
+  .use(Popup)
 
 // 配置使用中文语言
 for (let rule in rules) {
@@ -62,6 +75,7 @@ extend('code', {
 Vue.component('ValidationProvider', ValidationProvider)
 Vue.component('ValidationObserver', ValidationObserver)
 
+Vue.filter('relativeTime', relativeTime)
 Vue.config.productionTip = false
 
 new Vue({
